@@ -1,7 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import bodyparser from "body-parser";
 import { AuthRouter } from "./routes/auth.js";
 import { ComplainRouter } from "./routes/complaints.js";
 
@@ -9,10 +8,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use(bodyparser.urlencoded({ extended: false }));
-app.use(bodyparser.json());
 
-app.use(dotenv.config());
 
 app.use("/auth", AuthRouter);
 app.use("/complaint", ComplainRouter);
@@ -31,4 +27,4 @@ mongoose
     console.error(err);
   });
 
-app.listen(process.env.PORT, console.log(`Server is active!`));
+app.listen(process.env.PORT || 3000, console.log(`Server is active!`));
