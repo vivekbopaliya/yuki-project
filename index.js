@@ -12,7 +12,7 @@ app.use(cors());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 
-// app.use(dotenv.config());
+app.use(dotenv.config());
 
 app.use("/auth", AuthRouter);
 app.use("/complaint", ComplainRouter);
@@ -31,4 +31,4 @@ mongoose
     console.error(err);
   });
 
-app.listen(3000, console.log(`Server is active!`));
+app.listen(process.env.PORT, console.log(`Server is active!`));
